@@ -1,6 +1,6 @@
 // app_theme.dart
 //
-// 职责：定义 Knot 应用的「蓝色品牌」默认主题（浅色/深色），并通过 [KnotThemeColors]
+// 职责：定义 tool_box 应用的「蓝色品牌」默认主题（浅色/深色），并通过 [ToolBoxThemeColors]
 // 主题扩展补充 Material 3 未覆盖的业务状态色与装饰色；同时抽取品牌基础色常量供全局复用。
 // 所属模块：tool_box / common/provider/theme（主题层）。
 // 关键依赖：
@@ -19,7 +19,7 @@ import 'app_palette.dart';
 /// 应用主题装配中心。
 ///
 /// 职责：持有品牌基础色常量，并提供浅色 [light] / 深色 [dark] 两套完整 [ThemeData]。
-/// 两套主题均由私有 [_build] 基于对应 [ColorScheme] 与 [KnotThemeColors] 扩展统一生成，
+/// 两套主题均由私有 [_build] 基于对应 [ColorScheme] 与 [ToolBoxThemeColors] 扩展统一生成，
 /// 以保证组件级样式（按钮、输入框、导航栏等）在深浅模式下表现一致。
 class AppTheme {
   /// 私有构造，禁止实例化；本类仅暴露静态常量与静态主题。
@@ -46,16 +46,16 @@ class AppTheme {
   /// 成功绿（#34A853）：业务通用成功状态色，不在 M3 ColorScheme 内，故单独抽取。
   static const Color successGreen = Color(0xFF34A853);
 
-  /// 浅色主题：组合浅色 [lightScheme] 与浅色 [KnotThemeColors] 扩展。
+  /// 浅色主题：组合浅色 [lightScheme] 与浅色 [ToolBoxThemeColors] 扩展。
   static final ThemeData light = _build(
     lightScheme,
-    const KnotThemeColors.light(),
+    const ToolBoxThemeColors.light(),
   );
 
-  /// 深色主题：组合深色 [darkScheme] 与深色 [KnotThemeColors] 扩展。
+  /// 深色主题：组合深色 [darkScheme] 与深色 [ToolBoxThemeColors] 扩展。
   static final ThemeData dark = _build(
     darkScheme,
-    const KnotThemeColors.dark(),
+    const ToolBoxThemeColors.dark(),
   );
 
   // 浅色模式 ColorScheme（暖米白基底 #F5F3EF，取自 Pixso 色卡 card-light 节点 15:1205）
@@ -138,15 +138,15 @@ class AppTheme {
     scrim: Color(0x99000000),
   );
 
-  // 私有构建器：基于 ColorScheme 生成基础主题，再 copyWith 覆盖组件级样式并注入 KnotThemeColors 扩展。
+  // 私有构建器：基于 ColorScheme 生成基础主题，再 copyWith 覆盖组件级样式并注入 ToolBoxThemeColors 扩展。
   // 集中统一组件样式（按钮/输入/导航/对话框等），确保深浅模式表现一致。
   /// 私有构建器：基于 ColorScheme 生成基础主题，再 copyWith 覆盖组件级样式并注入主题扩展。
   ///
   /// 注入两个扩展：
-  ///   - [KnotThemeColors]：M3 未覆盖的业务状态色与装饰色；
+  ///   - [ToolBoxThemeColors]：M3 未覆盖的业务状态色与装饰色；
   ///   - [AppPalette]：语义色板，供各页面通过 `AppPalette.of(context)` 取色，
   ///     使页面私有色板能跟随主题色方案变化。本主题固定注入 **coffee（咖啡色）** 版。
-  static ThemeData _build(ColorScheme scheme, KnotThemeColors extendedColors) {
+  static ThemeData _build(ColorScheme scheme, ToolBoxThemeColors extendedColors) {
     final ThemeData base = ThemeData(
       useMaterial3: true,
       colorScheme: scheme,
@@ -505,9 +505,9 @@ class AppTheme {
 }
 
 @immutable
-final class KnotThemeColors extends ThemeExtension<KnotThemeColors> {
+final class ToolBoxThemeColors extends ThemeExtension<ToolBoxThemeColors> {
   /// 全参私有构造：业务状态色与装饰色一次性确定，外部经命名构造获取成套配色。
-  const KnotThemeColors({
+  const ToolBoxThemeColors({
     required this.success,
     required this.onSuccess,
     required this.successContainer,
@@ -530,7 +530,7 @@ final class KnotThemeColors extends ThemeExtension<KnotThemeColors> {
   /// success/warning/info 为主色与容器色，on* 为对应前景色；
   /// accentDecorative / bannerStart / bannerEnd 用于装饰渐变与 Banner 背景，
   /// 其色值不取自 M3 标准字段，作为品牌点缀集中在此扩展管理。
-  const KnotThemeColors.light()
+  const ToolBoxThemeColors.light()
     : success = const Color(0xFF2E6B45),
       onSuccess = const Color(0xFFFFFFFF),
       successContainer = const Color(0xFFDCEFE2),
@@ -548,7 +548,7 @@ final class KnotThemeColors extends ThemeExtension<KnotThemeColors> {
       bannerEnd = const Color(0xFF8B6F5E);
 
   /// 深色业务状态/装饰配色工厂，与浅色保持一致语义、各自适配对比度。
-  const KnotThemeColors.dark()
+  const ToolBoxThemeColors.dark()
     : success = const Color(0xFF8FD5A5),
       onSuccess = const Color(0xFF143A23),
       successContainer = const Color(0xFF143A23),
@@ -619,7 +619,7 @@ final class KnotThemeColors extends ThemeExtension<KnotThemeColors> {
 
   /// 主题扩展拷贝方法：仅替换非 null 字段，其余沿用当前实例（主题过渡场景使用）。
   @override
-  KnotThemeColors copyWith({
+  ToolBoxThemeColors copyWith({
     Color? success,
     Color? onSuccess,
     Color? successContainer,
@@ -636,7 +636,7 @@ final class KnotThemeColors extends ThemeExtension<KnotThemeColors> {
     Color? bannerStart,
     Color? bannerEnd,
   }) {
-    return KnotThemeColors(
+    return ToolBoxThemeColors(
       success: success ?? this.success,
       onSuccess: onSuccess ?? this.onSuccess,
       successContainer: successContainer ?? this.successContainer,
@@ -659,9 +659,9 @@ final class KnotThemeColors extends ThemeExtension<KnotThemeColors> {
   ///
   /// [other] 为 null 时直接返回自身。
   @override
-  KnotThemeColors lerp(KnotThemeColors? other, double t) {
+  ToolBoxThemeColors lerp(ToolBoxThemeColors? other, double t) {
     if (other == null) return this;
-    return KnotThemeColors(
+    return ToolBoxThemeColors(
       success: Color.lerp(success, other.success, t)!,
       onSuccess: Color.lerp(onSuccess, other.onSuccess, t)!,
       successContainer: Color.lerp(
@@ -701,14 +701,14 @@ final class KnotThemeColors extends ThemeExtension<KnotThemeColors> {
   }
 }
 
-/// 在 [BuildContext] 上扩展 `knotThemeColors` getter，便捷获取已注入的 [KnotThemeColors]。
-extension KnotThemeContext on BuildContext {
-  /// 读取当前主题注入的 [KnotThemeColors]。
+/// 在 [BuildContext] 上扩展 `toolBoxThemeColors` getter，便捷获取已注入的 [ToolBoxThemeColors]。
+extension ToolBoxThemeContext on BuildContext {
+  /// 读取当前主题注入的 [ToolBoxThemeColors]。
   ///
-  /// 未注入时触发断言失败，便于开发期定位「忘记装配 KnotThemeColors 扩展」的问题。
-  KnotThemeColors get knotThemeColors {
-    final KnotThemeColors? colors = Theme.of(this).extension<KnotThemeColors>();
-    assert(colors != null, 'KnotThemeColors is missing from ThemeData.');
+  /// 未注入时触发断言失败，便于开发期定位「忘记装配 ToolBoxThemeColors 扩展」的问题。
+  ToolBoxThemeColors get toolBoxThemeColors {
+    final ToolBoxThemeColors? colors = Theme.of(this).extension<ToolBoxThemeColors>();
+    assert(colors != null, 'ToolBoxThemeColors is missing from ThemeData.');
     return colors!;
   }
 }

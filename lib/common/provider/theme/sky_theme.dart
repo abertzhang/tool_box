@@ -553,7 +553,7 @@ class SkyTheme {
 
 /// 晴空蓝主题的业务状态色与装饰色扩展。
 ///
-/// 与 [KnotThemeColors] 一一对应（success / warning / info 三套状态色 + 装饰色 + Banner 渐变），
+/// 与 [ToolBoxThemeColors] 一一对应（success / warning / info 三套状态色 + 装饰色 + Banner 渐变），
 /// 便于两套主题互相切换时业务层读法保持一致。
 @immutable
 final class SkyThemeColors extends ThemeExtension<SkyThemeColors> {
