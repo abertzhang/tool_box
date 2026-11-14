@@ -60,9 +60,6 @@ void main() async {
   // 1. Hive 初始化：本地键值存储，用于缓存语言、主题等轻量配置。
   await Hive.initFlutter();
   await Hive.openBox(AppBox.boxName);
-  // AppSettingsNotifier 使用独立的 'app_settings' Box，需在此一并打开，
-  // 否则该 Notifier 在 build 阶段同步取 Box 时会抛 HiveError。
-  await Hive.openBox('app_settings');
 
   // 2. Isar 初始化：打开工具箱六张记录表所在的本地数据库。
   //    各子工具（指南针 / 噪音 / 水平仪 / 直尺 / 潮汐 / 备忘录）的历史记录
