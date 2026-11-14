@@ -1,0 +1,9 @@
+# 本地开发环境配置（tool_box）
+#
+# 说明：本工程不接入云端后端，仅保留接口基址与调试开关两项，
+# 供 config/base_url.dart 与后续网络请求扩展使用。
+# 注意：任何密钥都不要写入本文件——它会被打进 App 包。
+api:
+  base_url: "https://test-api.xxx.com"
+debug:
+  enable_log: true

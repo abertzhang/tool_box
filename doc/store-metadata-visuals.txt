@@ -1,0 +1,122 @@
+Tool Box — 商店元数据（描述/关键词）与视觉元素核对
+====================================================
+日期：2026-09-27
+依据：项目代码实际功能 + iOS 工程配置
+
+====================================================================
+一、App Store 描述（Description）— 可直接粘贴
+====================================================================
+【英文版 · 建议直接使用】
+
+Tool Box is an all-in-one everyday toolkit that packs the tools you need most into one lightweight app. No clutter, no dozens of separate apps — just open, use, and go.
+
+Key features:
+
+• Compass — precise bearing, tilt calibration, and your current GPS altitude and coordinates.
+• Bubble Level — accurate surface and angle measurement for hanging, leveling, and alignment.
+• Sound Meter — measure the ambient noise around you in real time with your microphone.
+• Flashlight — a bright flashlight with adjustable brightness.
+• Travel Checklist — plan your trip and track every item before you leave.
+• Memo — quick notes with editable templates, saved on your device.
+• Ruler — measure real-world lengths on your screen.
+• Tide — check tide information when you're by the coast.
+• Unit Converter — length, area, weight, volume, speed, and temperature.
+• Force Converter — quick force unit conversions.
+• Rope Length Calculator — estimate rope or line length for your task.
+• World Clock — track time across different time zones.
+
+Pro Unlock (one-time purchase):
+• Remove all ads.
+• Lift the free usage limit and unlock unlimited access to every tool.
+
+Use it free as a guest, or sign in with Apple or Google to keep your Pro benefits across devices. Your data stays on your device — nothing is uploaded.
+
+【中文版 · 参考】
+Tool Box 是一款轻量一体化日常工具箱，把最常用的工具整合到单个 App 中：
+• 指南针：精准方位、倾斜校准与 GPS 海拔/经纬度
+• 水平仪：平面与角度测量
+• 噪音检测：麦克风实时测环境分贝
+• 手电筒：亮度自由调节
+• 出行清单：出行前规划与逐项跟踪
+• 备忘录：本地快速记录
+• 尺子、潮汐、单位换算（长度/面积/重量/体积/速度/温度）、力换算、绳索长度、世界时钟
+Pro Unlock（一次性购买）：去广告、解除免费次数上限，解锁全部工具。
+支持游客免费使用，也可 Apple/Google 登录多端同步。数据保存在设备端，不上传。
+
+====================================================================
+二、关键词（Keywords）— 可直接粘贴
+====================================================================
+compass, level, bubble level, sound meter, noise meter, decibel,
+flashlight, torch, checklist, memo, ruler, tide, unit converter,
+length converter, world clock, travel, toolkit, utilities
+
+关键词规范：
+- 苹果关键词上限 100 字符（逗号分隔，不计空格）。
+- 上面词串总计约 200 字符，需精简到 100 字符以内才能全部生效。
+【精简版（≤100字符，可直接粘贴）】
+compass,level,bubble,sound meter,noise,decibel,flashlight,torch,checklist,memo,ruler,tide,unit converter,world clock,toolkit
+（提示：中文商店可另填中文关键词：指南针,水平仪,噪音,手电筒,清单,备忘录,尺子,单位换算,世界时钟）
+
+====================================================================
+三、应用图标（App Icon）核对
+====================================================================
+项目现状：assets/images/ 下有 compass/level/noise/ruler/tide/memo/app.png
+         等工具图标；iOS 侧用 Assets.xcassets/AppIcon.appiconset 标准尺寸。
+
+App Store 上传要求：
+| 项 | 要求 |
+|---|---|
+| 图标文件 | 1024×1024 像素，无圆角、无透明通道、无边框 |
+| 必须使用源图 | 不可仅用截图裁切，需独立设计源图 |
+| 大小 | 最大 10 MB，PNG 格式 |
+| 内容 | 不能包含 App 名称/文字、水印、iTunes 角标 |
+
+iOS AppIcon.appiconset 内所需尺寸（Xcode 自动生成时对照）：
+- iPhone：20/29/40/60 等 @2x/@3x（共约 10 张）
+- iPad：20/29/40/76/83.5 等
+- 上传时 Xcode 会用 1024 主图自动派生，你只需准备 1 张 1024×1024 PNG。
+
+核对动作：
+[ ] 确认 app.png 为 1024×1024 无圆角 PNG
+[ ] 图标主体与工具主题一致（建议用 compass 或多工具拼合图形）
+[ ] 避免文字、透明、白边
+
+====================================================================
+四、截图（Screenshots）尺寸核对
+====================================================================
+App Store 截图要求（iPhone，英文商店至少 6.5 英寸 与 5.5 英寸各备）：
+| 规格 | 像素尺寸 | 用途 |
+|---|---|---|
+| 6.5 英寸 | 1290×2796（@3x 主推） | iPhone 15/16 Pro Max 等 |
+| 6.1 英寸 | 1179×2556 | iPhone 15/16 Pro 等 |
+| 5.5 英寸 | 1242×2208 | 兼容老款 |
+| iPad（可选） | 2048×2732 等 | 若供应 iPad |
+
+要求：
+- 必须真实 App 运行界面（指南针/水平仪/噪音/手电筒/清单/内购页实际画面）
+- 禁止只用启动页、封面图、登录页
+- 最多 10 张/设备
+- 建议首图突出核心卖点（如内购前免费额度、Pro 解锁）
+
+建议截图清单（6-8 张）：
+1. 首页工具网格（主视觉）
+2. 指南针实际运行
+3. 水平仪实际运行
+4. 噪音检测（含麦克风权限画面）
+5. 手电筒
+6. 出行清单/备忘录
+7. 单位换算
+8. Pro Unlock 购买页
+
+核对动作：
+[ ] 截图全部为真实运行画面（符合 2.3.3）
+[ ] 至少含 6.5 英寸规格，尺寸准确
+[ ] 首图清晰传达产品价值
+[ ] 截图无占位文字、无测试数据
+
+====================================================================
+五、与本提交包联动
+====================================================================
+- 描述/关键词需与审核回复第2点定位一致（all-in-one everyday toolkit）。
+- 截图须与录屏中展示的功能一致，避免前后矛盾。
+- 图标/截图确定后，一并提交到 App Store Connect 对应位置。

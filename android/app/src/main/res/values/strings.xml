@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 应用名（默认 / 英文环境）。
+     AndroidManifest 通过 @string/app_name 引用，实现桌面图标名称随系统语言切换。 -->
+<resources>
+    <string name="app_name">Tool Box</string>
+
+    <!-- Google 原生登录（google_sign_in）在 Android 端读取的资源。
+         google_sign_in 6.x 通过 R.string.default_web_client_id 取 serverClientId，
+         用于换取可被 Supabase 校验的 accessToken。占位值，上架前须替换为
+         Google Cloud Console「Web 应用」类型客户端 ID（与 oauth_config.dart 的
+         kGoogleWebClientId 保持一致）。注意：此处必须是 Web 类型而非 Android 类型 ID。 -->
+    <string name="default_web_client_id">000000000000-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com</string>
+</resources>

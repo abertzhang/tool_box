@@ -1,0 +1,2 @@
+# app-ads.txt —— tool_box (uk.aknot.toolbox) 授权广告流量声明文件
+google.com, pub-4627610691741188, DIRECT, f08c47fec0942fa0

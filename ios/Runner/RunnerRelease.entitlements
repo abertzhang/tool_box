@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>com.apple.developer.applesignin</key>
+	<array>
+		<string>Default</string>
+	</array>
+	<!-- ★ 不要给本文件加 com.apple.developer.in-app-purchase(s)！
+	     内购不是 entitlement，Apple 官方（TN3186 / DTS）明确说明：它是 App Service，
+	     只要 App ID 是「显式 App ID」而非通配符 App ID，就自动具备内购能力，
+	     服务端开通即可，代码签名里不需要、也不存在对应 entitlement。
+	     写了反而会让 Xcode 自动签名失败（profile 查不到该 key），真机购买照样能连上 App Store。 -->
+</dict>
+</plist>

@@ -1,0 +1,113 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/aab-apk/
+/coverage/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+/pubspec.lock
+/skills-lock.json
+
+**/private_env.yaml
+/scripts/prd.sh
+
+# Supabase 构建注入用环境变量（含 anon/publishable key，禁止入库）
+# 真实配置文件：local/env/prd.json（由 --dart-define-from-file 注入构建，只放 anon key）
+# 该文件位于 local/ 目录，已被下方 /local/ 规则整体忽略，不会入库。
+# 使用方式：local/env/prd.json 填入 SUPABASE_URL 与 SUPABASE_ANON_KEY：
+#   {
+#     "SUPABASE_URL": "https://<ref>.supabase.co",
+#     "SUPABASE_ANON_KEY": "<anon-key>"
+#   }
+# ⚠️ 红线：prd.json 会被整份注入 Flutter 构建（打进 App 包），
+#       绝不能放 service_role key / access token / p8 私钥 —— 那些走 local/env/dev.json。
+
+# office临时文件
+**/~$*
+
+**/.last*
+
+/flutter_scene/
+
+# Generated ExecuTorch programs are rebuilt from the versioned export recipe.
+/assets/models/*.pte
+
+# 服务端 / CI 密钥（⚠️ 与 prd.json 是两条不同的红线，别合并）
+#   · local/env/dev.json 存的是 service_role key / access token / Gmail 密码 / Apple p8 / keystore 密码：
+#     这些是服务端、绕过 RLS 或签名用的高敏感凭据，绝不进 App 包。
+#   · 只被 scripts/ 下的命令行脚本（set_otp_length.sh、setup_smtp_gmail.sh、
+#     apple_secret.py / apple_secret_rotate.sh）读取，不参与 Flutter 构建注入。
+#   · 该文件位于 local/ 目录，已被下方 /local/ 规则整体忽略，不会入库。
+# 使用方式：直接在 local/env/dev.json 填入对应键值（无需另建 .example 模板）。
+/local/
+
+# Apple Sign in with Apple 凭据（⚠️ 与上面两条又是不同的红线，别合并）
+#   · Apple .p8 私钥现在以 base64 存于 local/env/dev.json 的 APPLE_P8_B64 字段
+#     —— 私钥丢了只能去 Apple 后台 revoke 后重建（无法重新下载），务必离线备份
+#   · 只被 scripts/apple_secret.py 与 apple_secret_rotate.sh 读取，打包流程不碰
+#   · 相关配置（APPLE_TEAM_ID / KEY_ID / SERVICES_ID）也一并放 dev.json
+# 最近一次生成的 client secret（JWT），供 status 子命令回读；本身非机密但没必要入库
+/scripts/.apple_secret_last
+# 轮换日志（含时间戳与脱敏结果）
+/scripts/.apple_rotate.log
+# Android 上传密钥（⚠️ 构建必读，含签名密码与二进制 keystore，绝不能入库）
+#   · android/key.properties 是构建必读的签名配置文件（含 keystore 密码），作为独立文件保留在磁盘
+#     （不并入 dev.json —— 它是 Gradle 签名所需的专用文件），已 gitignore 防误提交
+#   · *.jks 是签名密钥二进制，无法进 JSON，作为唯一二进制例外保留在磁盘（已 gitignore）
+/android/key.properties
+/android/*.jks
+/android/upload-keystore.jks
+/upload-keystore.jks
+**/tmp/
+
+# Kotlin / Gradle 增量编译会话缓存（android/.kotlin/sessions），构建产物不入版本库
+**/.kotlin/
+
+# 账号总账 doc/account_info.md（⚠️ 汇总了 service_role key / access token / 应用专用密码）
+#   这是「把所有鸡蛋放一个篮子」的便利文件：查起来方便，但一旦入库等于一次性泄露全套凭据。
+#   脱敏展示的是掩码，原始值仍写在文件里 —— 所以它必须和 .env.local 同级对待。
+#   建议：真正的长期备份放密码管理器，本文件只当本地速查表。
+/doc/account_info.md
+
+# Supabase CLI 临时目录（含 cli-latest 等动态下载产物，非源码）
+/supabase/.temp/
+/.workbuddy/

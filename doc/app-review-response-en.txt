@@ -1,0 +1,35 @@
+1. Screen Recording:
+A screen recording captured on a physical iPhone running the latest iOS version is attached. It begins with launching the app and shows the typical user flow.
+
+Core tools (guest mode): compass with bearing, tilt calibration and GPS altitude/coordinates; bubble level for surface and angle measurement; noise meter measuring ambient decibels via the microphone; flashlight with adjustable brightness; travel checklist and memo (add/edit/delete, stored locally); and ruler, tide, unit converter, force converter, rope length calculator and world clock.
+
+Account flow: sign up/sign in via Apple Sign In and Google Sign In (registration and login combined; first OAuth authorization creates the account). Delete Account flow: Profile tab, Settings group, "Account Security", red "Delete Account" row, confirm dialog ("Delete your account? This cannot be undone. After deletion, all your local and cloud data will be permanently removed and cannot be recovered."), tap red "Delete Account"; "Account deleted" appears and app returns to signed-out (guest) state.
+
+In-app purchase flow: open purchase page from Profile VIP card or membership bar; tap "Upgrade Now" to complete "Pro Unlock" lifetime membership ($1.99, non-consumable); tap "Restore Purchases" to recover membership after reinstall or on a new device.
+
+2. App purpose & target audience:
+Tool Box is an all-in-one everyday toolkit for general travelers and everyday users. It replaces many separate single-function apps by combining compass, bubble level, noise meter, flashlight, travel checklist, memo, ruler, tide, unit conversion and other common tools in one lightweight app. Premium is a one-time in-app purchase that removes ads and lifts the free usage limit.
+
+3. Instructions for main features:
+The app is fully usable without login as a guest (with a limited free quota). Login is optional via Apple Sign In or Google Sign In.
+- Compass: tap to start, calibrate as prompted.
+- Bubble level: place phone on a flat surface to measure angle.
+- Noise meter: grant microphone permission, then measure noise.
+- Flashlight: toggle and adjust brightness.
+- Travel checklist/memo: add, edit and delete items.
+- Pro Unlock: tap the upgrade entry, complete the system in-app purchase, then use "Restore Purchases" to recover the membership.
+No demo account or sample files required.
+
+4. External services used:
+- Supabase (authentication and user profile storage).
+- Google AdMob (banner, rewarded and interstitial ads; premium users see no ads). Google User Messaging Platform (UMP) used for consent where required.
+- Apple Sign In and Google Sign In for third-party login.
+Core tools run entirely on-device using native iOS APIs (microphone, motion sensors, camera flash, GPS); no data or media is uploaded.
+
+5. Regional differences:
+The app is offered in all App Store countries and regions except mainland China. There are NO functional or content differences across offered regions; all features work consistently everywhere.
+
+6. Regulated industry / third-party material:
+This app is not in a highly regulated industry. All icons and assets are original and owned by the developer. No copyrighted third-party protected materials are used.
+
+The app was fully tested on physical iPhone devices with no crashes, plus TestFlight beta testing. Because it supports account creation, it includes a complete in-app account deletion flow. It includes a non-consumable in-app purchase ("Pro Unlock", $1.99 lifetime) with a working restore function verified in sandbox. All App Store screenshots show the real running UI, not splash screens. This app is for general consumers, not specific businesses.

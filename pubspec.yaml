@@ -1,0 +1,67 @@
+name: tool_box
+description: "户外工具箱 —— 面向户外与日常测量的轻量工具集合。"
+publish_to: 'none'
+
+version: 1.0.7+13
+
+environment:
+  sdk: ^3.12.2
+  flutter: ^3.44.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  go_router: 17.3.0
+  flutter_riverpod: 3.3.2
+  dio: 5.10.0
+  hive: 2.2.3
+  hive_flutter: 1.1.0
+  shared_preferences: 2.5.5
+  isar_community: ^3.3.2
+  isar_community_flutter_libs: ^3.3.2
+  intl: ^0.20.2
+  flutter_screenutil_plus: 1.6.0
+  flutter_compass: ^0.8.1
+  geolocator: ^14.0.3
+  noise_meter: ^5.1.0
+  sensors_plus: ^7.1.0
+  camera: 0.12.0+2
+  permission_handler: ^12.0.3
+  share_plus: ^13.3.0
+  path_provider: ^2.1.4
+  yaml: ^3.1.2
+  package_info_plus: 10.2.1
+  supabase_flutter: 2.17.2
+  sign_in_with_apple: ^8.2.0
+  google_sign_in: ^6.2.1
+  crypto: ^3.0.7
+  device_info_plus: ^13.2.0
+  in_app_purchase: ^3.3.0
+  in_app_purchase_storekit: ^0.4.11
+  in_app_review: ^2.0.12
+  google_mobile_ads: ^9.1.0
+  webview_flutter: 4.14.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  test: ^1.25.0
+  flutter_native_splash: ^2.4.8
+  integration_test:
+    sdk: flutter
+  flutter_lints: 6.0.0
+  build_runner: ^2.4.11
+  isar_community_generator: ^3.3.2
+
+dependency_overrides:
+  analyzer: ^12.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true
+  assets:
+    - assets/config/
+    - assets/images/app.png
+    - assets/images/

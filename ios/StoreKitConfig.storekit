@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>configuration</key>
+	<dict>
+		<key>appIdentifier</key>
+		<string>uk.aknot.toolbox</string>
+		<key>available</key>
+		<true/>
+		<key>locale</key>
+		<string>en_US</string>
+		<key>subscriptionStatusURL</key>
+		<string></string>
+		<key>products</key>
+		<array>
+			<dict>
+				<key>identifier</key>
+				<string>uk.aknot.toolbox.pro</string>
+				<key>kind</key>
+				<string>non-consumable</string>
+				<key>name</key>
+				<string>Pro Unlock</string>
+				<key>price</key>
+				<real>1.99</real>
+				<key>familyShareable</key>
+				<false/>
+				<key>localizations</key>
+				<array>
+					<dict>
+						<key>locale</key>
+						<string>en_US</string>
+						<key>title</key>
+						<string>Pro Unlock</string>
+						<key>description</key>
+						<string>Lifetime membership — unlock all Pro features</string>
+					</dict>
+					<dict>
+						<key>locale</key>
+						<string>zh_CN</string>
+						<key>title</key>
+						<string>Pro 解锁</string>
+						<key>description</key>
+						<string>永久会员 —— 解锁全部 Pro 功能</string>
+					</dict>
+				</array>
+			</dict>
+		</array>
+	</dict>
+</dict>
+</plist>

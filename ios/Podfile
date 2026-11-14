@@ -1,0 +1,75 @@
+# 全局最低 iOS 版本：camera / geolocator / permission_handler 等插件的共同下限为 13.0。
+# 显式声明可避免 CocoaPods 在不同 Flutter 版本下推导出不一致的 deployment target。
+platform :ios, '15.0'
+
+# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+project 'Runner', {
+  'Debug' => :debug,
+  'Profile' => :release,
+  'Release' => :release,
+}
+
+def flutter_root
+  generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)
+  unless File.exist?(generated_xcode_build_settings_path)
+    raise "#{generated_xcode_build_settings_path} must exist. If you're running pod install manually, make sure flutter pub get is executed first"
+  end
+
+  File.foreach(generated_xcode_build_settings_path) do |line|
+    matches = line.match(/FLUTTER_ROOT\=(.*)/)
+    return matches[1].strip if matches
+  end
+  raise "FLUTTER_ROOT not found in #{generated_xcode_build_settings_path}. Try deleting Generated.xcconfig, then run flutter pub get"
+end
+
+require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelper'), flutter_root)
+
+flutter_ios_podfile_setup
+
+target 'Runner' do
+  # 必须保留：flutter_compass / audio_streamer 等 ObjC+Swift 混合 pod 在静态库链接下
+  # 找不到自动生成的 xxx-Swift.h，只有打成 framework 才能正常编译。
+  use_frameworks!
+
+  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+  target 'RunnerTests' do
+    inherit! :search_paths
+  end
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    flutter_additional_ios_build_settings(target)
+
+    # google_mobile_ads 的公开头（FLTAd_Internal.h / FLTAdPreloader.h）会 #import
+    # <GoogleMobileAds/GoogleMobileAds_Beta.h>，而该头位于 GoogleMobileAds.framework 的
+    # PrivateHeaders 目录下，不属于任何 clang module。use_frameworks! 把 pod 编译成
+    # framework module 后，clang 禁止在 module 内引用非模块化头文件，直接报
+    # "Include of non-modular header inside framework module" 并中断构建。
+    # 单独关掉这一个 pod 的 DEFINES_MODULE —— 不再生成 modulemap，也就没有 module 上下文，
+    # 报错随之消失。它只被 GeneratedPluginRegistrant 以普通 #import 方式引用，不受影响。
+    target.build_configurations.each do |config|
+      config.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
+      if target.name == 'google_mobile_ads'
+        config.build_settings['DEFINES_MODULE'] = 'NO'
+      end
+
+      # permission_handler（iOS）：PERMISSION_* 宏在 PermissionHandlerEnums.h 里
+      # **默认为 0**，未启用的权限策略会在编译期被整段 #if 裁掉 —— 后果是
+      # `Permission.xxx.request()` 直接回调 Denied 并 return，**根本不弹系统授权框**，
+      # 表现为「页面好像从没申请过权限」。本项目用到：
+      #   - PERMISSION_MICROPHONE：Noise Detector 实时分贝采集；
+      #   - PERMISSION_CAMERA：手电筒（借用相机闪光灯）。
+      # ⚠️ 更隐蔽的是：被裁时返回的是 Denied 而非 PermanentlyDenied，Dart 侧会当成
+      #   「普通拒绝」而一直给「重试」按钮，重试又必然失败 → 永远进不了系统设置页。
+      # 注意保留 $(inherited)，否则会覆盖 Xcode 传入的其它预处理宏。
+      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)']
+      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] += [
+        'PERMISSION_CAMERA=1',
+        'PERMISSION_MICROPHONE=1',
+      ]
+    end
+  end
+end

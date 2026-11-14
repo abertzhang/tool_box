@@ -1,0 +1,96 @@
+Tool Box — 其他审核字段核对 + 最终交付目录
+=============================================
+日期：2026-09-27
+依据：项目代码实际配置
+
+====================================================================
+一、内购商品配置核对（App Store Connect）
+====================================================================
+| 字段 | 值 | 代码依据 |
+|---|---|---|
+| 商品ID | pro_unlock | membership_provider.dart:61 kMemberProductId |
+| 类型 | 非消耗型 (non-consumable) | 买断制终身会员 |
+| 价格 | $1.99（美国区基准） | 实际按各商店币种本地化 |
+| 显示名称 | Pro Unlock | 商店本地化标题 |
+| 恢复购买 | 已实现 | Restore Purchases（vipRestore） |
+| Xcode capability | 需开启 In-App Purchase | 上架前置条件 |
+
+需在 App Store Connect 完成：
+1. App → 功能 → 应用内购买项目 → 新建 non-consumable，ID = pro_unlock
+2. 价格等级选择，使美元区显示 $1.99
+3. 本地化名称：en = "Pro Unlock"；如需中文商店，zh 可填 "专业版解锁"
+4. 状态设为「准备提交」（Ready to Submit）
+5. Google Play Console 同步创建同名 managed product
+
+注意：你的 App 是「免费下载 + 内购解锁会员」模式 → 价格设为免费(Free)，
+      不要设成付费 App；内购商品 ID 必须与代码 kMemberProductId 完全一致。
+
+====================================================================
+二、App 元数据核对（定价与销售范围）
+====================================================================
+| 字段 | 值 | 备注 |
+|---|---|---|
+| App 名称 | Tool Box | CFBundleDisplayName |
+| 价格 | 免费（Free） | 内购为唯一变现 |
+| 供应地区 | 所有国家/地区，剔除中国大陆 | 与审核回复第5点一致 |
+| 支持语言 | en（默认en-US）、zh | l10n 含 app_en / app_zh |
+
+建议填写的商店文案（英文，与代码功能一一对应）：
+- 副标题（Subtitle）建议：All-in-One Everyday Toolkit
+- 描述（Description）沿用 app_info.md 英文版：
+  • Compass with precise bearings and tilt calibration
+  • Bubble level for accurate surface and angle measurement
+  • Sound level meter to check noise around you
+  • Flashlight with adjustable brightness
+  • Travel checklist to plan and track every trip
+  + 附加：ruler / tide / unit converter / force converter /
+    rope length calculator / world clock
+- 关键词（Keywords）：compass, level, bubble level, sound meter,
+  noise meter, decibel, flashlight, torch, checklist, memo, ruler,
+  unit converter, world clock, travel, toolkit
+- 版权：Copyright © 2026 abert. All rights reserved.
+- 技术支持URL / 隐私政策URL：Github Pages 可访问链接
+
+====================================================================
+三、加密与出口合规（已确认）
+====================================================================
+| 字段 | 值 |
+|---|---|
+| ITSAppUsesNonExemptEncryption | false |
+| 加密申报 | 不属于上述任意一种算法（未自行实现加密） |
+
+====================================================================
+四、年龄分级（已确认）
+====================================================================
+4+；不勾「专为儿童」；年龄分级问卷「广告」项选「是」。
+
+====================================================================
+五、广告（已确认）
+====================================================================
+AdMob banner（各工具页）/ rewarded（看广告得免费次数）/ interstitial（购买页）；
+UMP 同意管理已接；不请求 IDFA；SKAdNetwork + GAD ID + app-ads.txt 已配。
+
+====================================================================
+六、最终交付目录（doc/ 下共 6 份）
+====================================================================
+本文件之外，审核材料全套如下：
+
+| # | 文件 | 用途 | 是否直接提交 |
+|---|---|---|---|
+| 1 | SUBMISSION-PACKAGE.txt | 总览说明（先读） | 否（自用） |
+| 2 | app-review-response-en.txt | 审核回复纯英文版 | ✅ 粘贴到 Resolution Center + Notes |
+| 3 | app-review-response.txt | 审核回复中文完整版 | 否（自用核对） |
+| 4 | screen-recording-script.txt | 录屏拍摄脚本 | 按此录制 |
+| 5 | review-fields-checklist.txt | 其他审核字段核对表 | 否（自用） |
+| 6 | app-privacy-guide.txt | 隐私问卷操作指引 | 按此填问卷 |
+
+====================================================================
+七、最终提交顺序（建议执行流程）
+====================================================================
+1. 读 SUBMISSION-PACKAGE.txt 了解全貌。
+2. 按 screen-recording-script.txt 录制真机录屏（含登录/注销/内购/恢复购买）。
+3. 配好内购商品 pro_unlock（见本文件第一节）。
+4. 按 app-privacy-guide.txt 填隐私问卷。
+5. 把 app-review-response-en.txt 粘贴到 Resolution Center + Notes，上传录屏。
+6. 用 review-fields-checklist.txt + 本文件核对剩余字段（年龄/加密/广告/地区/元数据）。
+7. 确认技术支持URL、隐私政策URL 可访问后，提交审核。

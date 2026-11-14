@@ -1,0 +1,122 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 指南针「记录当前位置」需要的定位权限：写入海拔与经纬度。
+         无权限时页面仍可正常显示方位角，只是不记录坐标（体验不崩）。 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- 手电筒工具：通过相机闪光灯实现，需相机权限。 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- 噪音检测器：实时采集麦克风分贝，需录音权限。 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- 网络：预留给 dio 网络层（潮汐数据等后续在线能力）。 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- 应用内购买（1.99 美元买断会员）：
+         Play Billing Library 8.0.0 的 AAR 自身会声明该权限并经 manifest merge 合并进来，
+         这里显式写一行作为保险（重复声明对合并是幂等的，不会产生冲突），
+         将来插件若移除内部声明也不会静默失效。 -->
+    <uses-permission android:name="com.android.vending.BILLING" />
+
+    <!-- 声明本应用「使用但不强制要求」的硬件特性：
+         required=false 保证缺少磁力计/闪光灯的设备仍可从应用市场安装，
+         对应工具在运行时降级提示即可。 -->
+    <uses-feature android:name="android.hardware.sensor.compass" android:required="false" />
+    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.flash" android:required="false" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.microphone" android:required="false" />
+    <uses-feature android:name="android.hardware.location.gps" android:required="false" />
+
+    <application
+        android:label="@string/app_name"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:taskAffinity=""
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+            <!-- Specifies an Android theme to apply to this Activity as soon as
+                 the Android process has started. This theme is visible to the user
+                 while the Flutter UI initializes. After that, this theme continues
+                 to determine the Window background behind the Flutter UI. -->
+            <meta-data
+              android:name="io.flutter.embedding.android.NormalTheme"
+              android:resource="@style/NormalTheme"
+              />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <!-- Google OAuth（Supabase）回调：系统浏览器完成授权后跳回本 App。
+                 scheme + host 必须与 register_page.dart 的 _oauthRedirect 一致
+                 （uk.aknot.toolbox://login-callback），且需在 Supabase 控制台
+                 Authentication → URL Configuration → Redirect URLs 中登记同一地址。 -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="uk.aknot.toolbox" android:host="login-callback"/>
+            </intent-filter>
+            <!-- 密码重置邮件回调：邮件里的链接是 uk.aknot.toolbox://reset-callback，
+                 用户点击后由系统唤起本 App 并落到「设置新密码」页。
+                 注意 Android 的 <data> 是**按 host 精确匹配**的，共用 scheme 也不行，
+                 必须单独声明一个 host；iOS 只认 scheme，无需额外配置。
+                 同样需要在 Supabase 控制台 Authentication → URL Configuration
+                 → Redirect URLs 里登记该地址。 -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="uk.aknot.toolbox" android:host="reset-callback"/>
+            </intent-filter>
+        </activity>
+        <!-- AdMob App ID（横幅广告）。
+             ⚠️ 必须与应用在 AdMob 后台的 App ID 完全一致，且必须与
+                ios/Runner/Info.plist 的 GADApplicationIdentifier、
+                lib/common/ads/admob_config.dart 的 _appIdAndroid / 注入值保持一致。
+                2026-09-10 起填的是**生产 App ID**（AdMob 后台 Android 应用
+                ca-app-pub-4627610691741188~8306626111）。
+                缺失或填错会导致 GMA SDK 在启动时直接崩溃（不是「广告不显示」这么温和）。
+                本地调试想只用测试广告：AdMob 控制台「设置 → 测试设备」加设备最省事；
+                也可在 Dart 侧以 dart-define 编译参数覆盖广告单元 ID（但 App ID 只能改这里）。 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4627610691741188~8306626111"/>
+
+        <!-- Don't delete the meta-data below.
+             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+    </application>
+    <!-- Required to query activities that can process text, see:
+         https://developer.android.com/training/package-visibility and
+         https://developer.android.com/reference/android/content/Intent#ACTION_PROCESS_TEXT.
+
+         In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin. -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.PROCESS_TEXT"/>
+            <data android:mimeType="text/plain"/>
+        </intent>
+        <!-- Google OAuth（Supabase）需要唤起系统浏览器：
+             Android 11（API 30）起引入「包可见性」限制，未在 <queries> 中声明
+             VIEW + BROWSABLE + https 时，url_launcher 无法解析到浏览器，
+             表现为点击「Google 一键注册」无反应或直接抛错。
+             这是 supabase_flutter 走 app_links + url_launcher 方案的必需声明。 -->
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <category android:name="android.intent.category.BROWSABLE"/>
+            <data android:scheme="https"/>
+        </intent>
+    </queries>
+</manifest>

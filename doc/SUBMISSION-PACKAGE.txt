@@ -1,0 +1,80 @@
+Tool Box — App Store 审核提交包（Submission Package）
+=======================================================
+日期：2026-09-27
+适用：新开发者账号（App Review 历史有限）的补充材料核验请求
+生成依据：项目代码实际功能（账号系统 / 账号注销 / 内购会员 / AdMob广告 / Supabase）
+供应范围：所有 App Store 国家/地区，剔除中国大陆
+
+一、本提交包包含 3 份文件
+==========================
+1. app-review-response.txt
+   —— 审核回复完整版（6点回复 + 结尾合规段 + 提交前复核清单 + 使用说明），
+      含中文说明，便于你理解与核对。
+
+2. app-review-response-en.txt
+   —— 审核回复纯英文版，可直接全选复制粘贴提交，无中文说明。
+
+3. screen-recording-script.txt
+   —— 录屏拍摄脚本（三部分：核心工具 / 账号登录+注销 / 内购购买+恢复购买），
+      含自查清单。
+
+
+二、提交到哪两个位置（必须两处都填）
+====================================
+① Resolution Center（审核中心）—— 回复本轮的补充材料请求，粘贴 app-review-response-en.txt 全文，
+   并上传录屏附件。
+② App Review Information → Notes（审核信息-备注栏）—— 粘贴同一份全文，便于后续版本复用。
+
+三、录屏要求（重点）
+====================
+1. 真机 iPhone，最新 iOS 系统，从点击 App 图标启动开始录，不剪辑。
+2. 三个部分必须完整：
+   - 核心工具：指南针 / 水平仪 / 噪音检测 / 手电筒 / 出行清单（+ 可选附加工具）
+   - 账号流程：Apple 或 Google 登录 → 进入 Account Security → 点击红色
+     "Delete Account" → 确认弹窗 → 确认 → "Account deleted" → 回到未登录态
+   - 内购流程：进入购买页 → "Upgrade Now" 购买 Pro Unlock → "Restore Purchases" 恢复购买
+3. 全程无黑屏、无闪退、无权限异常卡死。
+4. 若希望录屏为英文界面，先将测试机系统语言设为 English。
+
+四、提交前复核清单（逐项核对）
+==============================
+[ ] 审核回复英文版已粘贴到 Resolution Center 回复框
+[ ] 同一份已粘贴到 App Review Information → Notes
+[ ] 录屏已上传（含登录、账号注销、内购购买、恢复购买完整流程）
+[ ] 隐私政策 URL 可访问（Github Pages）
+[ ] 技术支持 URL 可访问（Github Pages，如 tool-box-support.html）
+[ ] App Store 截图是真实运行界面，非启动页/封面图
+[ ] 内购商品名 "Pro Unlock" / $1.99 与 App Store Connect 一致
+[ ] 地区供应勾选：所有国家/地区，剔除中国大陆
+[ ] 无账号注册时需演示的账号删除流程已在录屏中完整呈现
+
+
+五、关键文案速查（来自代码 app_localizations_en.dart）
+=====================================================
+| 界面元素 | 英文文案 |
+|---|---|
+| 账号安全页入口 | Account Security |
+| 退出登录 | Sign Out |
+| 注销账号按钮 | Delete Account |
+| 注销确认弹窗标题 | Delete Account |
+| 注销确认正文 | Delete your account? This cannot be undone. |
+| 弹窗取消按钮 | Cancel |
+| 注销成功提示 | Account deleted |
+| 会员购买商品 | Pro Unlock（$1.99，non-consumable） |
+| 购买按钮 | Upgrade Now |
+| 恢复购买按钮 | Restore Purchases |
+| 恢复完成提示 | Restore finished. Membership activated if previously purchased |
+| 无购买记录提示 | No purchases found for this account |
+
+
+六、注：审核回复英文版中的核心表述（终版）
+==========================================
+1. Screen Recording — 录屏描述：核心工具 + 账号登录/注销 + 内购购买/恢复购买（详见英文版全文）。
+2. App purpose & target audience — 轻量一体化工具集，面向旅行者与日常用户。
+3. Instructions for main features — 游客可免登录使用；登录可选（Apple/Google）。
+4. External services used — Supabase（认证/用户资料）、Google AdMob（横幅/激励/插页，会员无广告）、
+   Apple/Google 登录；核心工具全部在设备端运行。
+5. Regional differences — 所有地区供应，剔除中国大陆；供应地区内功能无差异。
+6. Regulated industry — 非强监管行业，素材均为原创。
+结尾：已完成真机测试、支持账号创建故含账号注销、含 non-consumable 内购与恢复购买、
+      截图真实、面向大众消费者。

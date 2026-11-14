@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 应用名（法文环境）：与默认 values/strings.xml 保持一致，统一显示 “Tool Box”。
+     AndroidManifest 通过 @string/app_name 引用，桌面图标名称随此值展示。 -->
+<resources>
+    <string name="app_name">Tool Box</string>
+</resources>

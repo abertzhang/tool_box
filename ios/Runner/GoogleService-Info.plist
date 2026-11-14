@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  占位结构：Google 原生登录（google_sign_in）iOS 端配置。
+  本工程在 Dart 侧通过 oauth_config.dart 的 kGoogleIosClientId / kGoogleWebClientId
+  直接把 clientId / serverClientId 传给插件，因此本文件不是运行期必需；
+  它仅作结构参考，并把「反转 client id」(REVERSED_CLIENT_ID) 透传给
+  Info.plist 的 CFBundleURLTypes（真正被回调使用的接线点，见 Info.plist）。
+  上架前请把下列 REPLACE_* 占位值替换为 Google Cloud Console 中
+  「iOS 类型」客户端对应的真实值（包名 uk.aknot.toolbox）。
+-->
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>000000000000-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.000000000000-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</string>
+	<key>API_KEY</key>
+	<string>AIza000000000000000000000000000000000000000</string>
+	<key>GCM_SENDER_ID</key>
+	<string>000000000000</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>uk.aknot.toolbox</string>
+	<key>PROJECT_ID</key>
+	<string>REPLACE_WITH_PROJECT_ID</string>
+	<key>STORAGE_BUCKET</key>
+	<string>REPLACE_WITH_PROJECT_ID.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:000000000000:ios:0000000000000000000000</string>
+</dict>
+</plist>

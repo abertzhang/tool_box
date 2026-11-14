@@ -1,0 +1,73 @@
+Complete App Review Response — Tool Box
+=======================================
+适用于：Resolution Center 回复 + App Review Information → Notes 备注栏
+生成依据：项目代码实际功能（含账号系统/Apple·Google登录/账号注销/内购会员/AdMob广告/Supabase后端）
+日期：2026-09-27
+供应范围：所有 App Store 国家/地区，剔除中国大陆
+
+
+1. Screen Recording:
+A screen recording captured on a physical iPhone running the latest iOS version is attached. It begins with launching the app and demonstrates the complete typical user flow:
+
+Core tools (guest mode):
+- Compass with live bearing, tilt calibration, and GPS altitude/coordinates.
+- Bubble level showing surface and angle measurement.
+- Noise meter measuring ambient decibels via the microphone.
+- Flashlight with adjustable brightness.
+- Travel checklist and memo: add, edit, and delete items (stored locally).
+- Additional tools: ruler, tide, unit converter, force converter, rope length calculator, and world clock.
+
+Account flow:
+- Sign up / sign in via Apple Sign In and Google Sign In (registration and login are combined; OAuth first authorization creates the account).
+- Delete Account flow: open the Profile tab, tap "Account Security" in the Settings group, tap the red "Delete Account" row, confirm in the dialog ("Delete your account? This cannot be undone. After deletion, all your local and cloud data will be permanently removed and cannot be recovered."), then tap the red "Delete Account" button in the dialog. A "Account deleted" message appears and the app returns to the Profile in signed-out (guest) state.
+
+In-app purchase flow:
+- Open the purchase page from the Profile VIP card or the membership bar on the tools page.
+- Tap "Upgrade Now" to complete the "Pro Unlock" lifetime membership ($1.99, non-consumable) via the system payment sheet.
+- Tap "Restore Purchases" to recover the membership after reinstall or on a new device.
+
+2. App purpose & target audience:
+Tool Box is an all-in-one everyday toolkit for general travelers and everyday users. It solves the problem of installing many separate single-function apps by combining compass, bubble level, noise meter, flashlight, travel checklist, memo, ruler, tide, unit conversion, and other common tools in one lightweight app. Premium is a one-time in-app purchase that removes ads and lifts the free usage limit.
+
+3. Instructions for main features:
+The app can be used without logging in as a guest (with a limited free usage quota). Login is optional and provided via Apple Sign In or Google Sign In.
+- Compass: tap to start, calibrate as prompted.
+- Bubble level: place the phone on a flat surface to measure angle.
+- Noise meter: grant microphone permission, then measure ambient noise.
+- Flashlight: toggle and adjust brightness.
+- Travel checklist / memo: add, edit, and delete items.
+- Pro Unlock: tap the upgrade entry, complete the system in-app purchase, then use "Restore Purchases" to recover the membership after reinstall or on a new device.
+No demo account or sample files are required; the app is fully usable in guest mode.
+
+4. External services used:
+- Supabase (authentication and user profile storage).
+- Google AdMob (banner, rewarded, and interstitial ads; premium users see no ads). Google User Messaging Platform (UMP) is used for consent where required.
+- Apple Sign In and Google Sign In for third-party account login.
+Core tools run entirely on-device using native iOS APIs (microphone, motion sensors, camera flash, GPS); no data or media is uploaded.
+
+5. Regional differences:
+The app is offered in all App Store countries and regions except mainland China.
+There are NO functional or content differences across the regions where the app is available. All features work consistently in every offered country and region.
+
+6. Regulated industry / third-party material:
+This app is not in a highly regulated industry. All icons and assets are original and owned by the developer. No copyrighted third-party protected materials are used.
+
+We have fully tested this app on physical iPhone devices with no crashes or bugs, and completed TestFlight beta testing on real devices.
+Because the app supports account creation, it includes a complete in-app account deletion flow as required.
+This app includes a non-consumable in-app purchase ("Pro Unlock", $1.99 lifetime) with a fully working restore purchase function, verified in the sandbox environment.
+All App Store screenshots capture the real running UI of the app's core features, not splash screens or artwork.
+This app is built for general consumers, not for exclusive use by specific businesses or organizations.
+
+
+提交前复核（三处真实值）
+========================
+1. 内购商品英文名：代码兜底显示 "Pro Unlock" / $1.99 —— 与 App Store Connect 商品名一致。
+2. 恢复购买按钮文案：代码实际为 "Restore Purchases"（app_localizations_en.dart）—— 已按此更新，与 UI 一致。
+3. 地区供应：剔除中国大陆 —— 与后台勾选一致。
+
+
+使用说明
+========
+1. 全文粘贴到两处：① Resolution Center 回复框；② App Review Information → Notes（备注栏）。
+2. 录屏附件：按第 1 点描述录制（含账号登录 → 账号注销 → 内购购买 → 恢复购买）并上传到 Resolution Center。
+3. 提交前核对：隐私政策 URL、技术支持 URL（Github Pages）可访问；截图是真实运行界面。

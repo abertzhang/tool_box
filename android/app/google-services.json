@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1085313854776",
+    "project_id": "toolbox-9453d",
+    "storage_bucket": "toolbox-9453d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085313854776:android:9f7a706b1e348b84eca5cd",
+        "android_client_info": {
+          "package_name": "uk.aknot.toolbox"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNXSPtPPr-12tKaXmvFcSDh24VRk12umY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

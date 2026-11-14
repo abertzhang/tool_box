@@ -1,0 +1,49 @@
+# flutter_native_splash.yaml
+#
+# 职责：配置「原生启动屏」（Flutter 引擎加载之前显示的第一段启动屏）。
+# 所属模块：tool_box（应用启动体验）。
+# 生成命令：dart run flutter_native_splash:create
+# 还原命令：dart run flutter_native_splash:remove
+#
+# 重要设计说明（两段式启动屏）：
+#   原生启动屏运行在 Flutter 引擎加载「之前」，系统只支持静态图，无法播放动画。
+#   因此本工程采用两段式：
+#     第一段（本文件负责）：splash.jpg 铺满全屏 + 中间首帧 compass 图标 —— 消灭冷启动白屏。
+#     第二段（Flutter 层 SplashPage 负责）：引擎就绪后接手，同样是 splash.jpg 铺底，
+#           中间 compass → level → noise → ruler 四图淡入淡出轮播，3 秒后进入首页。
+#   两段首帧视觉完全一致（底图 + compass），保证切换时不跳变。
+
+flutter_native_splash:
+  # ================= 全屏铺满底图（Android 12 以下 / iOS）=================
+  # background_image 会拉伸铺满整屏，与 color 互斥（二选一，不能同时配置）。
+  # 注意：不能用 image 代替 —— image 只会被当作「居中 logo」缩放居中，不会铺满。
+  background_image: "assets/images/splash.jpg"
+
+  # 居中叠加的首帧图标：与 Flutter 层轮播的第一张（compass）保持一致，
+  # 让原生段 → Flutter 段的衔接不出现「图标突然出现」的跳变。
+  image: "assets/images/compass.png"
+
+  # 全屏：隐藏 Android 状态栏（iOS 默认即隐藏），实现沉浸式铺满。
+  fullscreen: true
+
+  # 生成的平台：本项目为移动端 App，Web 端不生成（Web 启动屏需额外加载大图，得不偿失）。
+  android: true
+  ios: true
+  web: false
+
+  # ================= Android 12+ 专用配置 =================
+  # Android 12 起系统改了启动屏机制：只支持「纯色背景 + 居中图标」，
+  # 官方明确不支持 background_image（背景图）。若不单独配置，
+  # Android 12+ 上会退化为系统默认白屏 + App 图标，与 iOS 观感不一致，故必须配置。
+  android_12:
+    # 窗口背景色：取 splash.jpg 的主色 #6FC6FC，保证与底图同色系不跳色。
+    color: "#6FC6FC"
+
+    # 居中图标：使用按 A12 规范预生成的 960×960 图（内容收在中心 640 直径圆内）。
+    # 直接用 400×400 的 compass.png 会被系统放大导致模糊，故用预生成的 splash_a12_icon.png。
+    # 注意：该文件刻意放在 assets/splash/ 而非 assets/images/ —— 前者未注册进
+    # pubspec 的 flutter.assets，因此只参与构建期生成，不会被打进 App 包体。
+    image: "assets/splash/splash_a12_icon.png"
+
+    # 图标背景色：白色圆形底板，让深色图标在蓝底上依然清晰可辨。
+    icon_background_color: "#FFFFFF"

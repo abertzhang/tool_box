@@ -1,0 +1,59 @@
+Screen Recording Script — Tool Box
+==================================
+录制要求：真机 iPhone，最新 iOS 系统，从点击 App 图标启动开始录，不剪辑。
+全程无黑屏、无闪退。录屏文件上传到 Resolution Center，附在审核回复旁。
+
+
+PART 1 — 核心工具演示（游客模式 / Guest Mode）
+----------------------------------------------
+1. 点击 App 图标，启动 Tool Box。
+2. 打开 Compass（指南针）：展示实时方位、倾斜校准、GPS 海拔与经纬度。
+3. 打开 Bubble level（水平仪）：将手机放平，展示水平检测与角度测量。
+4. 打开 Noise meter（噪音检测）：触发麦克风权限弹窗并允许，展示实时分贝。
+5. 打开 Flashlight（手电筒）：切换开关并调整亮度。
+6. 打开 Travel checklist（出行清单）与 Memo（备忘录）：
+   新增一条、编辑、删除一条（本地存储）。
+7. 可选：快速带过 Ruler（尺子）、Tide（潮汐）、Unit converter（单位换算）、
+   Force converter（力换算）、Rope length（绳索长度）、World clock（世界时钟）。
+
+
+PART 2 — 账号流程（登录 → 注销，重点，苹果 2.1 强制）
+-----------------------------------------------------
+1. 打开 Profile（个人中心）Tab。
+2. 未登录态下，点击登录入口，选择 Apple Sign In 或 Google Sign In，
+   完成授权（注册与登录合一，OAuth 首次授权即建号）。
+3. 回到 Profile，滚动到 Settings（设置）分组，点击 "Account Security"。
+4. 页面上出现两项："Sign Out"（退出登录，常规色）与
+   "Delete Account"（注销账号，红色危险样式）。
+5. 点击红色 "Delete Account" 行。
+6. 弹出二次确认对话框：
+   标题 "Delete Account"，正文 "Delete your account? This cannot be undone.
+   After deletion, all your local and cloud data will be permanently removed
+   and cannot be recovered."，按钮 Cancel / Delete Account（红色）。
+7. 点击弹窗中红色 "Delete Account" 按钮。
+8. 屏幕出现 "Account deleted" 提示，App 自动返回 Profile 并切回未登录（游客）态。
+
+
+PART 3 — 内购流程（购买 → 恢复购买，苹果 3.1.1 强制）
+----------------------------------------------------
+1. 从 Profile VIP 卡或工具页顶部会员状态条，进入购买页（Purchase Page）。
+2. 点击 "Upgrade Now"，拉起系统支付（iOS StoreKit），
+   完成 "Pro Unlock" 买断制终身会员（$1.99，non-consumable）。
+3. 购买成功，会员已生效（VIP 卡显示已解锁 / 广告消失）。
+4. 点击 "Restore Purchase"（恢复购买），验证重装/新设备后会员可恢复。
+5. 展示会员状态下无广告（广告位不在界面中）。
+
+
+录屏自查清单
+============
+[ ] 从启动 App 图标开始，无剪辑
+[ ] 完整演示 5 个核心工具（指南针/水平仪/噪音/手电筒/出行清单）
+[ ] 演示登录（Apple 或 Google 任一）
+[ ] 完整演示账号注销（进入 → 点删除 → 确认弹窗 → 确认 → 成功提示 → 回到未登录）
+[ ] 完整演示内购购买 + 恢复购买
+[ ] 全程无黑屏、无闪退、无权限异常卡死
+[ ] 英文界面（如系统语言为英文）或中英文均可，但按钮文案与代码一致
+
+注：若你希望录屏以英文界面呈现，请将测试机系统语言设为 English 后再录制；
+账号注销按钮实际文案为 "Delete Account"（来自 app_localizations_en.dart），
+恢复购买按钮文案请以你 UI 实际显示的英文为准。

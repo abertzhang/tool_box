@@ -1,0 +1,18 @@
+/* iOS 权限弹窗说明（法文）。
+ *
+ * 这里的 key 与 Runner/Info.plist 中的同名 key 一一对应：构建时 Xcode 会把本文件里
+ * 定义的值覆盖 Info.plist 中的默认值，系统据此在法文环境下弹出法文说明。
+ *
+ * ⚠️ 只写对应语种，不要写成「法文 + 英文 / 中文」混排 —— 早期 Info.plist 里就是混排，
+ * 英文系统用户第一眼看到的是非英文，属于 App Store Guideline 5.1.1 的常见拒审点。
+ * Info.plist 里保留英文作为默认值（developmentRegion = en），各 .lproj 分管一种语言。
+ */
+
+/* 相机：用于手电筒（借用相机闪光灯），不拍照、不保存 */
+"NSCameraUsageDescription" = "Utilisée comme lampe de poche (via le flash de l'appareil photo). Aucune photo ou vidéo n'est capturée ni enregistrée.";
+
+/* 定位：指南针显示当前位置的海拔与经纬度 */
+"NSLocationWhenInUseUsageDescription" = "Utilisée par la boussole pour afficher l'altitude ainsi que la latitude et la longitude du lieu actuel.";
+
+/* 麦克风：噪音检测器实时测量环境分贝，不录音、不上传 */
+"NSMicrophoneUsageDescription" = "Utilisée par le sonomètre pour mesurer le volume ambiant (décibels) en temps réel. Aucun son n'est enregistré ni envoyé.";

@@ -1,0 +1,16 @@
+# ARB文件目录
+arb-dir: lib/l10n
+# 基准模板（母版，所有文本在这里定义）
+template-arb-file: app_en.arb
+# 生成输出文件
+output-localization-file: app_localizations.dart
+# 生成类名称
+output-class: AppLocalizations
+# 可选：输出未翻译文案清单
+untranslated-messages-file: untranslated.txt
+# 可选：开启占位符、格式化支持
+use-escaping: true
+preferrred-supported-locales:
+  -en
+  -zh
+use-deferred-loading: true
