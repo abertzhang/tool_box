@@ -47,7 +47,7 @@
 | --- | --- | --- |
 | 邮箱、手机号、昵称原文 | PII，违反隐私政策与最小必要原则 | 需要用户维度分析时用 `user_id`（UUID）关联 |
 | 精确经纬度、详细地址 | 位置敏感数据 | 上传 `has_gps: bool` 或方位桶 `cardinal: 'NE'` |
-| 输入的具体数值（如绳长 137.5cm） | 无分析价值且可能涉密 | 上传量级桶 `result_bucket: '100-200'` |
+| 输入的具体数值（如力值 137.5N、分贝 63.2） | 无分析价值且可能涉密 | 上传量级桶 `result_bucket: '100-200'` |
 | 密码、Token、Authorization 头 | 安全红线 | 一律不进 params |
 
 > **反例对照**：设备级匿名 ID（`anonymous_id`）**允许**上传 —— 它是纯随机数，
@@ -136,7 +136,6 @@
 | `ruler_fullscreen` | 直尺进入 / 退出全屏 | `enter`: bool | 全屏使用占比。高则说明横屏测量是主场景，值得投入横屏适配与边缘防误触 | P2 · ✅ |
 | `conv_unit_convert` | 单位换算产生结果 | `category`: `area`/`volume`/`temp`/`speed`/`weight`/`length`<br>`from_unit`、`to_unit`<br>`swapped`: bool | 找出**最高频的单位对**，把它设为默认选中项；`category` 分布决定 pill 排序与是否拆分独立入口 | P1 · ✅ |
 | `conv_force_convert` | 拉力 / 承重换算产生结果 | `from_unit`、`to_unit`<br>`result_bucket`: 量级桶 | 用户实际换算的力值区间，用于校验安全系数档位设置是否符合真实使用场景 | P1 · ✅ |
-| `calc_rope_length` | 绳索长度计算器算出结果 | `mode`: `wrap`/`knot`<br>`knot_rule`: `bowline`…<br>`result_bucket`: 结果量级桶 | 采集真实的**周长 / 圈数 / 绳径**分布，校验"缠绕系数"与"绳结余量"等内置经验值是否偏离实际 | P1 · ✅ |
 
 ---
 
@@ -291,7 +290,7 @@ observers: [routeObserver, _trackPageObserver],
 
 | 手段 | 用在哪 | 说明 |
 | --- | --- | --- |
-| **节流**（`AppTrack.throttle`，默认 1.5s 窗口） | `conv_*`、`calc_rope_length` | 连续输入只留一条。要的是**分布**，不是逐次明细 |
+| **节流**（`AppTrack.throttle`，默认 1.5s 窗口） | `conv_*` 等输入驱动型换算事件 | 连续输入只留一条。要的是**分布**，不是逐次明细 |
 | **首帧屏蔽** | `uc_converter_tab` | `initState` 里会调一次重算给下方填初值，那是程序行为不是用户行为，不记 |
 | **`log` 而非 `logNow`** | 除 `vip_*` 与 `app_open` 外全部事件 | `logNow` 每条事件单独发一次 HTTPS，高频调用既费电又拖慢 UI |
 

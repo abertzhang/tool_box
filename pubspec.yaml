@@ -2,7 +2,7 @@ name: tool_box
 description: "户外工具箱 —— 面向户外与日常测量的轻量工具集合。"
 publish_to: 'none'
 
-version: 1.0.7+13
+version: 1.0.7+14
 
 environment:
   sdk: ^3.12.2

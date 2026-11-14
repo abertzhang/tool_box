@@ -15,7 +15,7 @@ Core tools (guest mode):
 - Noise meter measuring ambient decibels via the microphone.
 - Flashlight with adjustable brightness.
 - Travel checklist and memo: add, edit, and delete items (stored locally).
-- Additional tools: ruler, tide, unit converter, force converter, rope length calculator, and world clock.
+- Additional tools: ruler, tide, unit converter, force converter, and world clock.
 
 Account flow:
 - Sign up / sign in via Apple Sign In and Google Sign In (registration and login are combined; OAuth first authorization creates the account).

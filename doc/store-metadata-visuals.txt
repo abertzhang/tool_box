@@ -22,7 +22,6 @@ Key features:
 • Tide — check tide information when you're by the coast.
 • Unit Converter — length, area, weight, volume, speed, and temperature.
 • Force Converter — quick force unit conversions.
-• Rope Length Calculator — estimate rope or line length for your task.
 • World Clock — track time across different time zones.
 
 Pro Unlock (one-time purchase):
@@ -39,7 +38,7 @@ Tool Box 是一款轻量一体化日常工具箱，把最常用的工具整合�
 • 手电筒：亮度自由调节
 • 出行清单：出行前规划与逐项跟踪
 • 备忘录：本地快速记录
-• 尺子、潮汐、单位换算（长度/面积/重量/体积/速度/温度）、力换算、绳索长度、世界时钟
+• 尺子、潮汐、单位换算（长度/面积/重量/体积/速度/温度）、力换算、世界时钟
 Pro Unlock（一次性购买）：去广告、解除免费次数上限，解锁全部工具。
 支持游客免费使用，也可 Apple/Google 登录多端同步。数据保存在设备端，不上传。
 

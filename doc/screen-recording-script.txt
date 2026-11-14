@@ -14,7 +14,7 @@ PART 1 — 核心工具演示（游客模式 / Guest Mode）
 6. 打开 Travel checklist（出行清单）与 Memo（备忘录）：
    新增一条、编辑、删除一条（本地存储）。
 7. 可选：快速带过 Ruler（尺子）、Tide（潮汐）、Unit converter（单位换算）、
-   Force converter（力换算）、Rope length（绳索长度）、World clock（世界时钟）。
+   Force converter（力换算）、World clock（世界时钟）。
 
 
 PART 2 — 账号流程（登录 → 注销，重点，苹果 2.1 强制）

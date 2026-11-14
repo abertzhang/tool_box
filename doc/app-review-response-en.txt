@@ -1,7 +1,7 @@
 1. Screen Recording:
 A screen recording captured on a physical iPhone running the latest iOS version is attached. It begins with launching the app and shows the typical user flow.
 
-Core tools (guest mode): compass with bearing, tilt calibration and GPS altitude/coordinates; bubble level for surface and angle measurement; noise meter measuring ambient decibels via the microphone; flashlight with adjustable brightness; travel checklist and memo (add/edit/delete, stored locally); and ruler, tide, unit converter, force converter, rope length calculator and world clock.
+Core tools (guest mode): compass with bearing, tilt calibration and GPS altitude/coordinates; bubble level for surface and angle measurement; noise meter measuring ambient decibels via the microphone; flashlight with adjustable brightness; travel checklist and memo (add/edit/delete, stored locally); and ruler, tide, unit converter, force converter and world clock.
 
 Account flow: sign up/sign in via Apple Sign In and Google Sign In (registration and login combined; first OAuth authorization creates the account). Delete Account flow: Profile tab, Settings group, "Account Security", red "Delete Account" row, confirm dialog ("Delete your account? This cannot be undone. After deletion, all your local and cloud data will be permanently removed and cannot be recovered."), tap red "Delete Account"; "Account deleted" appears and app returns to signed-out (guest) state.
 

@@ -43,8 +43,7 @@ Tool Box — 其他审核字段核对 + 最终交付目录
   • Sound level meter to check noise around you
   • Flashlight with adjustable brightness
   • Travel checklist to plan and track every trip
-  + 附加：ruler / tide / unit converter / force converter /
-    rope length calculator / world clock
+  + 附加：ruler / tide / unit converter / force converter / world clock
 - 关键词（Keywords）：compass, level, bubble level, sound meter,
   noise meter, decibel, flashlight, torch, checklist, memo, ruler,
   unit converter, world clock, travel, toolkit
